@@ -44,7 +44,7 @@ import org.florescu.android.util.PixelUtil;
 
 import java.math.BigDecimal;
 
-/**
+/*
  * Widget that lets users select a minimum and maximum value on a given numerical range.
  * The range value types can be one of Long, Double, Integer, Float, Short, Byte or BigDecimal.<br>
  * <br>
@@ -58,11 +58,11 @@ import java.math.BigDecimal;
  * @author Michael Keppler (bananeweizen@gmx.de)
  */
 public class RangeSeekBar<T extends Number> extends android.support.v7.widget.AppCompatImageView {
-    /**
+    /*
      * Default color of a {@link RangeSeekBar}, #FF33B5E5. This is also known as "Ice Cream Sandwich" blue.
      */
     public static final int ACTIVE_COLOR = Color.argb(0xFF, 0x33, 0xB5, 0xE5);
-    /**
+    /*
      * An invalid pointer id.
      */
     public static final int INVALID_POINTER_ID = 255;
@@ -324,7 +324,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         return notifyWhileDragging;
     }
 
-    /**
+    /*
      * Should the widget notify the listener callback while the user is still dragging a thumb? Default is false.
      */
     @SuppressWarnings("unused")
@@ -332,7 +332,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         this.notifyWhileDragging = flag;
     }
 
-    /**
+    /*
      * Returns the absolute minimum value of the range that has been set at construction time.
      *
      * @return The absolute minimum value of the range.
@@ -341,7 +341,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         return absoluteMinValue;
     }
 
-    /**
+    /*
      * Returns the absolute maximum value of the range that has been set at construction time.
      *
      * @return The absolute maximum value of the range.
@@ -350,7 +350,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         return absoluteMaxValue;
     }
 
-    /**
+    /*
       * Round off value using the {@link #absoluteStepValue}
       * @param value to be rounded off
       * @return rounded off value
@@ -361,7 +361,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         return (T) numberType.toNumber(Math.max(absoluteMinValuePrim, Math.min(absoluteMaxValuePrim, d)));
     }
 
-    /**
+    /*
      * Returns the currently selected min value.
      *
      * @return The currently selected min value.
@@ -374,7 +374,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         return isDragging;
     }
 
-    /**
+    /*
      * Sets the currently selected minimum value. The widget will be invalidated and redrawn.
      *
      * @param value The Number value to set the minimum value to. Will be clamped to given absolute minimum/maximum range.
@@ -388,7 +388,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         }
     }
 
-    /**
+    /*
      * Returns the currently selected max value.
      *
      * @return The currently selected max value.
@@ -397,7 +397,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         return roundOffValueToStep(normalizedToValue(normalizedMaxValue));
     }
 
-    /**
+    /*
      * Sets the currently selected maximum value. The widget will be invalidated and redrawn.
      *
      * @param value The Number value to set the maximum value to. Will be clamped to given absolute minimum/maximum range.
@@ -411,7 +411,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         }
     }
 
-    /**
+    /*
      * Registers given listener callback to notify about changed selected values.
      *
      * @param listener The listener to notify about changed selected values.
@@ -421,7 +421,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         this.listener = listener;
     }
 
-    /**
+    /*
      * Set the path that defines the shadow of the thumb. This path should be defined assuming
      * that the center of the shadow is at the top left corner (0,0) of the canvas. The
      * {@link #drawThumbShadow(float, Canvas)} method will place the shadow appropriately.
@@ -433,7 +433,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         this.thumbShadowPath = thumbShadowPath;
     }
 
-    /**
+    /*
      * Handles thumb selection and movement. Notifies listener callback on certain events.
      */
     @Override
@@ -559,7 +559,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         }
     }
 
-    /**
+    /*
      * Tries to claim the user's drag motion, and requests disallowing any ancestors from stealing events in the drag.
      */
     private void attemptClaimDrag() {
@@ -568,21 +568,21 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         }
     }
 
-    /**
+    /*
      * This is called when the user has started touching this widget.
      */
     void onStartTrackingTouch() {
         isDragging = true;
     }
 
-    /**
+    /*
      * This is called when the user either releases his touch or the touch is canceled.
      */
     void onStopTrackingTouch() {
         isDragging = false;
     }
 
-    /**
+    /*
      * Ensures correct size of the widget.
      */
     @Override
@@ -601,7 +601,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         setMeasuredDimension(width, height);
     }
 
-    /**
+    /*
      * Draws the widget on the given canvas.
      */
     @Override
@@ -715,7 +715,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         return String.valueOf(value);
     }
 
-    /**
+    /*
      * Overridden to save instance state when device orientation changes. This method is called automatically if you assign an id to the RangeSeekBar widget using the {@link #setId(int)} method. Other members of this class than the normalized min and max values don't need to be saved.
      */
     @Override
@@ -727,7 +727,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         return bundle;
     }
 
-    /**
+    /*
      * Overridden to restore instance state when device orientation changes. This method is called automatically if you assign an id to the RangeSeekBar widget using the {@link #setId(int)} method.
      */
     @Override
@@ -738,7 +738,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         normalizedMaxValue = bundle.getDouble("MAX");
     }
 
-    /**
+    /*
      * Draws the "normal" resp. "pressed" thumb image on specified x-coordinate.
      *
      * @param screenCoord The x-coordinate in screen space where to draw the image.
@@ -758,7 +758,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
                 paint);
     }
 
-    /**
+    /*
      * Draws a drop shadow beneath the slider thumb.
      *
      * @param screenCoord the x-coordinate of the slider thumb
@@ -771,7 +771,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         canvas.drawPath(translatedThumbShadowPath, shadowPaint);
     }
 
-    /**
+    /*
      * Decides which (if any) thumb is touched by the given x-coordinate.
      *
      * @param touchX The x-coordinate of a touch event in screen space.
@@ -792,7 +792,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         return result;
     }
 
-    /**
+    /*
      * Decides if given x-coordinate in screen space needs to be interpreted as "within" the normalized thumb x-coordinate.
      *
      * @param touchX               The x-coordinate in screen space to check.
@@ -803,7 +803,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         return Math.abs(touchX - normalizedToScreen(normalizedThumbValue)) <= thumbHalfWidth;
     }
 
-    /**
+    /*
      * Sets normalized min value to value so that 0 <= value <= normalized max value <= 1. The View will get invalidated when calling this method.
      *
      * @param value The new normalized min value to set.
@@ -813,7 +813,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         invalidate();
     }
 
-    /**
+    /*
      * Sets normalized max value to value so that 0 <= normalized min value <= value <= 1. The View will get invalidated when calling this method.
      *
      * @param value The new normalized max value to set.
@@ -823,7 +823,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         invalidate();
     }
 
-    /**
+    /*
      * Converts a normalized value to a Number object in the value space between absolute minimum and maximum.
      */
     @SuppressWarnings("unchecked")
@@ -833,7 +833,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         return (T) numberType.toNumber(Math.round(v * 100) / 100d);
     }
 
-    /**
+    /*
      * Converts the given Number value to a normalized double.
      *
      * @param value The Number value to normalize.
@@ -847,7 +847,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         return (value.doubleValue() - absoluteMinValuePrim) / (absoluteMaxValuePrim - absoluteMinValuePrim);
     }
 
-    /**
+    /*
      * Converts a normalized value into screen space.
      *
      * @param normalizedCoord The normalized value to convert.
@@ -857,7 +857,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         return (float) (padding + normalizedCoord * (getWidth() - 2 * padding));
     }
 
-    /**
+    /*
      * Converts screen space x-coordinates into normalized values.
      *
      * @param screenCoord The x-coordinate in screen space to convert.
@@ -874,14 +874,14 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         }
     }
 
-    /**
+    /*
      * Thumb constants (min and max).
      */
     private enum Thumb {
         MIN, MAX
     }
 
-    /**
+    /*
      * Utility enumeration used to convert between Numbers and doubles.
      *
      * @author Stephan Tittel (stephan.tittel@kom.tu-darmstadt.de)
@@ -935,7 +935,7 @@ public class RangeSeekBar<T extends Number> extends android.support.v7.widget.Ap
         }
     }
 
-    /**
+    /*
      * Callback listener interface to notify about changed range values.
      *
      * @param <T> The Number type the RangeSeekBar has been declared with.
