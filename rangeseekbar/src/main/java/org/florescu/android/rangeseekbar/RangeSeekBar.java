@@ -38,7 +38,6 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
-import android.widget.ImageView;
 
 import org.florescu.android.util.BitmapUtil;
 import org.florescu.android.util.PixelUtil;
@@ -58,7 +57,7 @@ import java.math.BigDecimal;
  * @author Alex Florescu (alex@florescu.org)
  * @author Michael Keppler (bananeweizen@gmx.de)
  */
-public class RangeSeekBar<T extends Number> extends ImageView {
+public class RangeSeekBar<T extends Number> extends android.support.v7.widget.AppCompatImageView {
     /**
      * Default color of a {@link RangeSeekBar}, #FF33B5E5. This is also known as "Ice Cream Sandwich" blue.
      */
@@ -84,58 +83,58 @@ public class RangeSeekBar<T extends Number> extends ImageView {
     private static final int DEFAULT_TEXT_DISTANCE_TO_TOP_IN_DP = 8;
 
     private static final int LINE_HEIGHT_IN_DP = 1;
-    private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private final Paint shadowPaint = new Paint();
+    protected final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    protected final Paint shadowPaint = new Paint();
 
-    private Bitmap thumbImage;
-    private Bitmap thumbPressedImage;
-    private Bitmap thumbDisabledImage;
+    protected Bitmap thumbImage;
+    protected Bitmap thumbPressedImage;
+    protected Bitmap thumbDisabledImage;
 
-    private float thumbHalfWidth;
-    private float thumbHalfHeight;
+    protected float thumbHalfWidth;
+    protected float thumbHalfHeight;
 
-    private float padding;
+    protected float padding;
     protected T absoluteMinValue, absoluteMaxValue, absoluteStepValue;
     protected NumberType numberType;
     protected double absoluteMinValuePrim, absoluteMaxValuePrim, absoluteStepValuePrim;
     protected double normalizedMinValue = 0d;
     protected double normalizedMaxValue = 1d;
     protected double minDeltaForDefault = 0;
-    private Thumb pressedThumb = null;
-    private boolean notifyWhileDragging = false;
-    private OnRangeSeekBarChangeListener<T> listener;
+    protected Thumb pressedThumb = null;
+    protected boolean notifyWhileDragging = false;
+    protected OnRangeSeekBarChangeListener<T> listener;
 
-    private float downMotionX;
+    protected float downMotionX;
 
-    private int activePointerId = INVALID_POINTER_ID;
+    protected int activePointerId = INVALID_POINTER_ID;
 
-    private int scaledTouchSlop;
+    protected int scaledTouchSlop;
 
-    private boolean isDragging;
+    protected boolean isDragging;
 
-    private int textOffset;
-    private int textSize;
-    private int distanceToTop;
-    private RectF rect;
+    protected int textOffset;
+    protected int textSize;
+    protected int distanceToTop;
+    protected RectF rect;
 
-    private boolean singleThumb;
-    private boolean alwaysActive;
-    private boolean showLabels;
-    private boolean showTextAboveThumbs;
-    private float internalPad;
-    private int activeColor;
-    private int defaultColor;
-    private int textAboveThumbsColor;
+    protected boolean singleThumb;
+    protected boolean alwaysActive;
+    protected boolean showLabels;
+    protected boolean showTextAboveThumbs;
+    protected float internalPad;
+    protected int activeColor;
+    protected int defaultColor;
+    protected int textAboveThumbsColor;
 
-    private boolean thumbShadow;
-    private int thumbShadowXOffset;
-    private int thumbShadowYOffset;
-    private int thumbShadowBlur;
-    private Path thumbShadowPath;
-    private Path translatedThumbShadowPath = new Path();
-    private Matrix thumbShadowMatrix = new Matrix();
+    protected boolean thumbShadow;
+    protected int thumbShadowXOffset;
+    protected int thumbShadowYOffset;
+    protected int thumbShadowBlur;
+    protected Path thumbShadowPath;
+    protected Path translatedThumbShadowPath = new Path();
+    protected Matrix thumbShadowMatrix = new Matrix();
 
-    private boolean activateOnDefaultValues;
+    protected boolean activateOnDefaultValues;
 
 
     public RangeSeekBar(Context context) {
