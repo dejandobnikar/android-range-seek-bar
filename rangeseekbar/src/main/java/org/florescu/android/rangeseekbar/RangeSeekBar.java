@@ -617,19 +617,14 @@ public class RangeSeekBar<T extends Number> extends ImageView {
 
         if (showLabels) {
             // draw min and max labels
-            String minLabel = getContext().getString(R.string.demo_min_label);
-            String maxLabel = getContext().getString(R.string.demo_max_label);
-            minMaxLabelSize = Math.max(paint.measureText(minLabel), paint.measureText(maxLabel));
-            float minMaxHeight = textOffset + thumbHalfHeight + textSize / 3;
-            canvas.drawText(minLabel, 0, minMaxHeight, paint);
-            canvas.drawText(maxLabel, getWidth() - minMaxLabelSize, minMaxHeight, paint);
+            minMaxLabelSize = drawLabel(canvas);
         }
         padding = internalPad + minMaxLabelSize + thumbHalfWidth;
 
         // draw seek bar background line
         rect.left = padding;
         rect.right = getWidth() - padding;
-        canvas.drawRect(rect, paint);
+        drawBackground(canvas);
 
         boolean selectedValuesAreDefault = (normalizedMinValue <= minDeltaForDefault && normalizedMaxValue >= 1 - minDeltaForDefault);
 
@@ -642,7 +637,7 @@ public class RangeSeekBar<T extends Number> extends ImageView {
         rect.right = normalizedToScreen(normalizedMaxValue);
 
         paint.setColor(colorToUseForButtonsAndHighlightedLine);
-        canvas.drawRect(rect, paint);
+        drawActiveRange(canvas);
 
         // draw minimum thumb (& shadow if requested) if not a single thumb control
         if (!singleThumb) {
@@ -698,6 +693,25 @@ public class RangeSeekBar<T extends Number> extends ImageView {
 
     }
 
+    protected void drawActiveRange(@NonNull Canvas canvas) {
+        canvas.drawRect(rect, paint);
+    }
+
+    protected void drawBackground(@NonNull Canvas canvas) {
+        canvas.drawRect(rect, paint);
+    }
+
+    protected float drawLabel(@NonNull Canvas canvas) {
+        final float minMaxLabelSize;
+        String minLabel = getContext().getString(R.string.demo_min_label);
+        String maxLabel = getContext().getString(R.string.demo_max_label);
+        minMaxLabelSize = Math.max(paint.measureText(minLabel), paint.measureText(maxLabel));
+        float minMaxHeight = textOffset + thumbHalfHeight + textSize / 3;
+        canvas.drawText(minLabel, 0, minMaxHeight, paint);
+        canvas.drawText(maxLabel, getWidth() - minMaxLabelSize, minMaxHeight, paint);
+        return minMaxLabelSize;
+    }
+
     protected String valueToString(T value) {
         return String.valueOf(value);
     }
@@ -732,7 +746,7 @@ public class RangeSeekBar<T extends Number> extends ImageView {
      * @param pressed     Is the thumb currently in "pressed" state?
      * @param canvas      The canvas to draw upon.
      */
-    private void drawThumb(float screenCoord, boolean pressed, Canvas canvas, boolean areSelectedValuesDefault) {
+    protected void drawThumb(float screenCoord, boolean pressed, Canvas canvas, boolean areSelectedValuesDefault) {
         Bitmap buttonToDraw;
         if (!activateOnDefaultValues && areSelectedValuesDefault) {
             buttonToDraw = thumbDisabledImage;
@@ -751,7 +765,7 @@ public class RangeSeekBar<T extends Number> extends ImageView {
      * @param screenCoord the x-coordinate of the slider thumb
      * @param canvas      the canvas on which to draw the shadow
      */
-    private void drawThumbShadow(float screenCoord, Canvas canvas) {
+    protected void drawThumbShadow(float screenCoord, Canvas canvas) {
         thumbShadowMatrix.setTranslate(screenCoord + thumbShadowXOffset, textOffset + thumbHalfHeight + thumbShadowYOffset);
         translatedThumbShadowPath.set(thumbShadowPath);
         translatedThumbShadowPath.transform(thumbShadowMatrix);

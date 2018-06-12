@@ -1,18 +1,19 @@
 apply plugin: 'com.android.application'
 repositories {
+    google()
     maven {
         url "https://oss.sonatype.org/content/repositories/snapshots"
     }
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "org.florescu.android.rangeseekbar.sample"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
